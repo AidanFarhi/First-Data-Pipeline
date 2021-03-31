@@ -6,8 +6,7 @@ from dotenv import load_dotenv
 def generate_create_table_string():
     create_table_string = """
         CREATE TABLE IF NOT EXISTS weather_data (
-            id INTEGER PRIMARY KEY,
-            dt INTEGER NOT NULL,
+            dt INTEGER PRIMARY KEY NOT NULL,
             description VARCHAR(255),
             temp DECIMAL NOT NULL,
             temp_min DECIMAL NOT NULL,
@@ -15,7 +14,7 @@ def generate_create_table_string():
             pressure DECIMAL NOT NULL,
             humidity DECIMAL NOT NULL,
             wind_spd DECIMAL NOT NULL,
-            precip DECIMAL NOT NULL,
+            precip DECIMAL NOT NULL
         );
     """
     return create_table_string

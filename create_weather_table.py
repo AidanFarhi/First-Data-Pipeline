@@ -14,7 +14,8 @@ def generate_create_table_string():
             temp_max DECIMAL NOT NULL,
             pressure DECIMAL NOT NULL,
             humidity DECIMAL NOT NULL,
-            wind_spd DECIMAL NOT NULL 
+            wind_spd DECIMAL NOT NULL,
+            precip DECIMAL NOT NULL,
         );
     """
     return create_table_string

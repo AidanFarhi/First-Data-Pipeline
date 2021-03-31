@@ -11,7 +11,6 @@ def get_brooklyn_weather_from_api():
     return data
 
 
-
-
 if __name__ == '__main__':
-    main()
+    data = get_brooklyn_weather_from_api()
+    print(data)

@@ -1,7 +1,8 @@
-import psycopg2
 import os
 import json
-from dotenv import load_dotenv
+import psycopg2
+from db_credentials_server import serve_credentials
+from operator import itemgetter
 
 
 def create_db_commit_string():
@@ -36,10 +37,7 @@ def commit_weather_data_to_db():
     print('Attempting to connect to database...')
     try:
         # First get database credentials
-        load_dotenv()
-        dbname = os.getenv('dbname')
-        user = os.getenv('user')
-        password = os.getenv('password')
+        dbname, user, password = itemgetter('dbname', 'user', 'password')(serve_credentials())
         # Then connect to database
         conn = psycopg2.connect(f'dbname={dbname} user={user} password={password}')
         cur = conn.cursor()  # Get a cursor to execute commands

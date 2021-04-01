@@ -17,7 +17,8 @@ def create_db_commit_string():
         pressure = data['main']['pressure']
         humidity = data['main']['humidity']
         wind_spd = data['wind']['speed']
-        precip = data['rain']['1h']
+        if data.get('rain') is None: precip = 0
+        else: precip = data['rain']['1h']
     commit_string = f"""
         INSERT INTO weather_data 
         (dt, description, temp, temp_min, temp_max, pressure, humidity, wind_spd, precip) 

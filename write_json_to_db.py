@@ -44,6 +44,7 @@ def commit_weather_data_to_db():
         cur.execute(create_db_commit_string())  # insert vals into db
         cur.close()  # Close cursor connection to DB
         conn.commit()  # Commit changes to DB
+        print("Data successfully commited to db..")
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
     finally:

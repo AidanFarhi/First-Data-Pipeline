@@ -7,9 +7,13 @@ def serve_credentials():
     credentials = {
         "dbname": "",
         "user": "",
-        "password": ""
+        "password": "",
+        "port": "",
+        "uri": ""
     }
     credentials['dbname'] = os.getenv('dbname')
     credentials['user'] = os.getenv('user')
     credentials['password'] = os.getenv('password')
+    credentials['port'] = os.getenv('port')
+    credentials['uri'] = os.getenv('uri')
     return credentials

@@ -1,7 +1,6 @@
 import psycopg2
-import os
-from dotenv import load_dotenv
-
+from operator import itemgetter
+from db_credentials_server import serve_credentials
 
 def generate_create_table_string():
     create_table_string = """
@@ -24,12 +23,9 @@ def create_weather_table():
     print('Attempting to connect to database...')
     try:
         # First get database credentials
-        load_dotenv()
-        dbname = os.getenv('dbname')
-        user = os.getenv('user')
-        password = os.getenv('password')
+        dbname, user, password, port, host = itemgetter('dbname', 'user', 'password', 'port', 'uri')(serve_credentials())
         # Then connect to database
-        conn = psycopg2.connect(f'dbname={dbname} user={user} password={password}')
+        conn = psycopg2.connect(f'postgresql://{user}:{password}@{host}:{port}/{dbname}')
         cur = conn.cursor()  # Get a cursor to execute commands
         cur.execute(generate_create_table_string())  # Now execute create table command
         cur.close()  # Close cursor connection to DB

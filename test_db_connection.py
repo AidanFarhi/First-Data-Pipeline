@@ -7,9 +7,9 @@ def test_connection():
     print('Attempting to connect to database...')
     try:
         # First get database credentials
-        dbname, user, password = itemgetter('dbname', 'user', 'password')(serve_credentials())
+        dbname, user, password, port, host = itemgetter('dbname', 'user', 'password', 'port', 'uri')(serve_credentials())
         # Then connect to database
-        conn = psycopg2.connect(f'dbname={dbname} user={user} password={password}')
+        conn = psycopg2.connect(f'postgresql://{user}:{password}@{host}:{port}/{dbname}')
         cur = conn.cursor()  # Get a cursor to execute commands
         cur.execute('SELECT VERSION()')
         row = cur.fetchone()
